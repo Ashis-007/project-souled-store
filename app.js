@@ -5,7 +5,8 @@ const express = require("express"),
   mongoose = require("mongoose"),
   bodyParser = require("body-parser"),
   cookieParser = require("cookie-parser"),
-  cors = require("cors");
+  cors = require("cors"),
+  path = require("path");
 
 // My Routes
 const authRoutes = require("./routes/auth"),
@@ -39,6 +40,15 @@ app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", stripeRoutes);
 app.use("/api", braintreeRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"));
+
+  // serve static file
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "frontend/build/index.html"));
+  });
+}
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

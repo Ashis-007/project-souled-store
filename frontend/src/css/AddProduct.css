@@ -1,0 +1,46 @@
+.product__form {
+  padding-left: 2rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.product__form__photo-label {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.product__form input {
+  width: 90%;
+  height: 40px;
+  background: #eee;
+  border-radius: 5px;
+  padding: 0.5em;
+  font-size: 1.7rem;
+  -webkit-transition: ease-in;
+  transition: ease-in;
+  font-family: "Montserrat", sans-serif;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.product__form input:focus {
+  border: 2px solid dodgerblue;
+}
+
+.product__form select {
+  width: 150px;
+  margin: 0 0 2rem;
+  padding: 0.5rem 1rem;
+}
+
+.product__form__submit {
+  background-image: -webkit-gradient(linear, left top, right top, from(#ff512f), color-stop(51%, #f09819), to(#ff512f));
+  background-image: linear-gradient(to right, #ff512f 0%, #f09819 51%, #ff512f 100%);
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border-radius: 2rem;
+  display: block;
+}
+/*# sourceMappingURL=AddProduct.css.map */

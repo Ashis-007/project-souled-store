@@ -1,0 +1,89 @@
+.card {
+  max-width: 90%;
+  min-height: 20vh;
+  margin: 0 auto 2.5rem;
+  display: block;
+  border-radius: 10px;
+  -webkit-box-shadow: 5px 7px 17px -7px rgba(150, 170, 180, 0.5);
+          box-shadow: 5px 7px 17px -7px rgba(150, 170, 180, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card__info {
+  margin: 1em;
+}
+
+.card__info__title {
+  font-size: 1.9rem;
+}
+
+.card__info__desc {
+  font-size: 1.2rem;
+  margin: 0.5em 0;
+}
+
+.card__info__price {
+  font-size: 1.8rem;
+  margin: 0.5em 0;
+  font-weight: 600;
+}
+
+.card__btn {
+  padding: 1rem 2rem;
+  border-radius: 2em;
+  font-size: 1.7rem;
+  font-weight: 600;
+  display: inline-block;
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.card__btn__add {
+  background-image: -webkit-gradient(linear, left top, right top, from(#ff512f), color-stop(51%, #dd2476), to(#ff512f));
+  background-image: linear-gradient(to right, #ff512f 0%, #dd2476 51%, #ff512f 100%);
+  background: #f50057;
+  color: white;
+}
+
+.card__btn__add:hover {
+  background-position: right center;
+  -webkit-box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 6px 18px 0 rgba(0, 0, 0, 0.1);
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+}
+
+.card__btn__remove {
+  border: 2px solid #ff3e4d;
+  color: #ff3e4d;
+}
+
+.card__btn__remove:hover {
+  background: #ff3e4d;
+  color: white;
+}
+
+@media (min-width: 900px) {
+  .card {
+    width: 55%;
+    min-height: 300px;
+    position: relative;
+    display: block;
+    -webkit-box-shadow: 5px 7px 18px -2px rgba(150, 170, 180, 0.5);
+            box-shadow: 5px 7px 18px -2px rgba(150, 170, 180, 0.5);
+  }
+  .card__info {
+    padding: 1em 0.5em;
+  }
+  .card__info__desc {
+    font-size: 1.5rem;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 1.5rem;
+  }
+  .card__info__price {
+    font-size: 2.3rem;
+  }
+}
+/*# sourceMappingURL=Card.css.map */

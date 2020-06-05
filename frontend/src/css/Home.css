@@ -1,0 +1,31 @@
+.gradient {
+  width: 100vw;
+  height: 15vh;
+  background-image: linear-gradient(90.4deg, #f4c73e -3.8%, #f43e3e 46.8%, #f53dc3 98.8%);
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  font-weight: normal;
+}
+
+.gradient p {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+@media (min-width: 900px) {
+  .gradient p {
+    font-size: 5rem;
+    margin-top: 2rem;
+  }
+  .home__grid {
+    margin: auto;
+    display: -ms-grid;
+    display: grid;
+    gap: 2rem;
+    -ms-grid-columns: (minmax(350px, 1fr))[auto-fit];
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+/*# sourceMappingURL=Home.css.map */

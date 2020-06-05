@@ -4,7 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm start --prefix frontend",
+    "client-install": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +17,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "braintree": "^2.23.0",
+    "concurrently": "^5.2.0",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

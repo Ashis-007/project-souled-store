@@ -1,0 +1,19 @@
+.wrapper {
+  margin: auto;
+}
+
+h2.amount {
+  font-size: 2rem;
+  margin: 1rem 2rem;
+}
+
+.purchase {
+  background: #55aa00;
+  color: white;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  margin: 1.5rem 4.4em;
+  font-weight: 400;
+  font-size: 1.9rem;
+}
+/*# sourceMappingURL=Cart.css.map */
