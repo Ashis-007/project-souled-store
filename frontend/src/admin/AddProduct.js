@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Base from "../core/Base";
+import Error from "../core/Error";
 import { isAuthenticated } from "../auth/helper";
 import { createProduct, getAllCategories } from "./helper/adminapicall";
 
@@ -88,20 +89,14 @@ const AddProduct = () => {
   };
 
   const successMsg = () => {
-    return (
-      <div className="" style={{ display: createdProduct ? "" : "none" }}>
-        <h4>{createdProduct} created successfully</h4>
-      </div>
-    );
+    if (createdProduct) {
+      return <Error msg="Created new product successfully!" error={false} />;
+    }
   };
 
   const errorMsg = () => {
     if (error) {
-      return (
-        <div className="">
-          <h4>Failed to create product</h4>
-        </div>
-      );
+      return <Error msg="Failed to create new product" />;
     }
   };
 

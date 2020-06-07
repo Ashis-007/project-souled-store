@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Base from "../core/Base";
+import Error from "../core/Error";
 import { isAuthenticated } from "../auth/helper";
 import { getCategory, updateCategory } from "./helper/adminapicall";
 
@@ -86,17 +87,13 @@ const ManageCategory = ({ match }) => {
 
   const successMsg = () => {
     if (success) {
-      return <h3 className="text-success">Category updated successfully!</h3>;
+      return <Error msg="Category updated successfully!" error={false} />;
     }
   };
 
   const errorMsg = () => {
     if (error) {
-      return (
-        <h3 className="text-danger offset-1 container">
-          Failed to create category
-        </h3>
-      );
+      return <Error msg="Could not update category" />;
     }
   };
 

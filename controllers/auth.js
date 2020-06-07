@@ -12,10 +12,10 @@ exports.signup = (req, res) => {
   }
 
   const user = new User(req.body);
-  user.save((err, user) => {
-    if (err) {
+  user.save((err, newUser) => {
+    if (err || !newUser) {
       res.status(400).json({
-        error: "NOT able to save user in DB",
+        error: err,
       });
     }
     res.json(user);

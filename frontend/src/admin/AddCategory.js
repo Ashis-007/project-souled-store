@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Base from "../core/Base";
+import Error from "../core/Error";
 import { isAuthenticated } from "../auth/helper";
 import { createCategory } from "./helper/adminapicall";
 
@@ -74,13 +75,13 @@ const AddCategory = () => {
 
   const successMsg = () => {
     if (success) {
-      return <h3 className="">Category created successfully!</h3>;
+      return <Error msg="New category added successfully!" error={false} />;
     }
   };
 
   const errorMsg = () => {
     if (error) {
-      return <h3 className="">Failed to create category</h3>;
+      return <Error msg="Could not create new category" />;
     }
   };
 

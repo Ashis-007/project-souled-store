@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Base from "../core/Base";
 import { Link, Redirect } from "react-router-dom";
 
+import Base from "../core/Base";
 import { signin, authenticate, isAuthenticated } from "../auth/helper";
+import Error from "../core/Error";
 
 import "../css/Signin.css";
 
@@ -56,29 +57,8 @@ const Signin = () => {
     }
   };
 
-  const loadingMsg = () => {
-    return (
-      loading && (
-        <div className="alert alert-info">
-          <h2>Loading...</h2>
-        </div>
-      )
-    );
-  };
-
   const errorMsg = () => {
-    return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
-          >
-            {error}
-          </div>
-        </div>
-      </div>
-    );
+    return <Error msg={error} />;
   };
 
   const signInForm = () => {
@@ -127,7 +107,7 @@ const Signin = () => {
     <Base title="" description="">
       <h2 className="form__heading">Sign In</h2>
 
-      {loadingMsg()}
+      {/* {loadingMsg()} */}
       {errorMsg()}
       {signInForm()}
       {performRedirect()}

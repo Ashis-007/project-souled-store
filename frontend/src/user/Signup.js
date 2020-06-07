@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Base from "../core/Base";
 import { Link } from "react-router-dom";
 
+import Base from "../core/Base";
 import { signup } from "../auth/helper";
+import Error from "../core/Error";
 
 import "../css/Signup.css";
 
@@ -44,28 +45,14 @@ const Signup = () => {
   };
 
   const successMsg = () => {
+    const msg = "Your account was created successfully!";
     return (
-      <div className="">
-        <div className="">
-          <div className="" style={{ display: success ? "" : "none" }}>
-            Account was created successfully! Please{" "}
-            <Link to="/signin">login here</Link>
-          </div>
-        </div>
-      </div>
+      <Error msg={msg} error={false} link="/signin" linkMsg="Login Here" />
     );
   };
 
   const errorMsg = () => {
-    return (
-      <div className="">
-        <div className="">
-          <div className="" style={{ display: error ? "" : "none" }}>
-            {error}
-          </div>
-        </div>
-      </div>
-    );
+    return <Error msg={error} error={true} />;
   };
 
   const signUpForm = () => {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Base from "../core/Base";
+import Error from "../core/Error";
 import {
   getAllCategories,
   getProduct,
@@ -109,14 +110,17 @@ const UpdateProduct = ({ match }) => {
     setValues({ ...values, [name]: value });
   };
 
-  const successMsg = () => (
-    <div
-      className="alert alert-success mt-3"
-      style={{ display: updatedProduct ? "" : "none" }}
-    >
-      <h4>{updatedProduct} updated successfully</h4>
-    </div>
-  );
+  const successMsg = () => {
+    if (updatedProduct) {
+      return <Error msg="Product updated successfully!" error={false} />;
+    }
+  };
+
+  const errorMsg = () => {
+    if (error) {
+      return <Error msg="Failed to update product" />;
+    }
+  };
 
   const goBack = () => {
     return (
@@ -207,7 +211,7 @@ const UpdateProduct = ({ match }) => {
         <div className="">
           <h2 className="heading">Update product</h2>
           {successMsg()}
-
+          {errorMsg()}
           {createProductForm()}
           {goBack()}
         </div>
