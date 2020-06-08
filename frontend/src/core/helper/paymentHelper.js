@@ -1,7 +1,7 @@
 import { API } from "../../backend";
 
 export const getToken = (userId, token) => {
-  return fetch(`api/payment/gettoken/${userId}`, {
+  return fetch(`${API}/payment/gettoken/${userId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -14,7 +14,7 @@ export const getToken = (userId, token) => {
 };
 
 export const makePayment = (userId, token, paymentInfo) => {
-  return fetch(`api/payment/braintree/${userId}`, {
+  return fetch(`${API}/payment/braintree/${userId}`, {
     method: "POST",
     headers: {
       Accept: "application/json",
