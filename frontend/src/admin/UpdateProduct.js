@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Base from "../core/Base";
-import Error from "../core/Error";
 import {
   getAllCategories,
   getProduct,
@@ -36,11 +36,8 @@ const UpdateProduct = ({ match }) => {
     price,
     stock,
     categories,
-    category,
-    loading,
     error,
     updatedProduct,
-    getaRedirect,
     formData,
   } = values;
 
@@ -112,13 +109,32 @@ const UpdateProduct = ({ match }) => {
 
   const successMsg = () => {
     if (updatedProduct) {
-      return <Error msg="Product updated successfully!" error={false} />;
+      const msg = "Updated product successfully!";
+      toast.success(msg, {
+        position: "top-center",
+        toastId: "v",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   const errorMsg = () => {
     if (error) {
-      return <Error msg="Failed to update product" />;
+      toast.error(error, {
+        position: "top-center",
+        toastId: "*",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     }
   };
 

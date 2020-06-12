@@ -1,10 +1,13 @@
 import React from "react";
 import Navbar from "./Navbar";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Base = ({
   title = "",
   description = "",
-  className = "bg-dark text-white p-4",
+  className = "",
   children,
 }) => {
   return (
@@ -14,6 +17,18 @@ const Base = ({
         <div className="">
           <h2 className="">{title}</h2>
           <p className="">{description}</p>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            style={{ fontSize: "1.7rem", padding: "0.5em" }}
+          />
         </div>
         <div className={className}>{children}</div>
       </div>

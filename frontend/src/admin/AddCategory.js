@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Base from "../core/Base";
-import Error from "../core/Error";
 import { isAuthenticated } from "../auth/helper";
 import { createCategory } from "./helper/adminapicall";
 
@@ -75,13 +75,32 @@ const AddCategory = () => {
 
   const successMsg = () => {
     if (success) {
-      return <Error msg="New category added successfully!" error={false} />;
+      const msg = "New category added successfully!";
+      toast.success(msg, {
+        position: "top-center",
+        toastId: "v",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   const errorMsg = () => {
     if (error) {
-      return <Error msg="Could not create new category" />;
+      toast.error(error, {
+        position: "top-center",
+        toastId: "*",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     }
   };
 

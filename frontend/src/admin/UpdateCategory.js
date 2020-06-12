@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 import Base from "../core/Base";
-import Error from "../core/Error";
 import { isAuthenticated } from "../auth/helper";
 import { getCategory, updateCategory } from "./helper/adminapicall";
 
@@ -29,7 +30,7 @@ const ManageCategory = ({ match }) => {
               placeholder="For Example, Summer Tee"
             />
             <button onClick={onSubmit} className="btn category__form__submit">
-              Create
+              Update
             </button>
           </div>
         </form>
@@ -87,13 +88,32 @@ const ManageCategory = ({ match }) => {
 
   const successMsg = () => {
     if (success) {
-      return <Error msg="Category updated successfully!" error={false} />;
+      const msg = "Category updated successfully!";
+      toast.success(msg, {
+        position: "top-center",
+        toastId: "v",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   const errorMsg = () => {
     if (error) {
-      return <Error msg="Could not update category" />;
+      toast.error(error, {
+        position: "top-center",
+        toastId: "*",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     }
   };
 
@@ -101,7 +121,7 @@ const ManageCategory = ({ match }) => {
     <div>
       <Base title="" className="">
         <div className="category__container">
-          <h2 className="category__container__heading">Create new category</h2>
+          <h2 className="category__container__heading">Update category</h2>
           {successMsg()}
           {errorMsg()}
           {categoryForm()}

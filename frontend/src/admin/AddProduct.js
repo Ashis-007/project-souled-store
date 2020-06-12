@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Base from "../core/Base";
-import Error from "../core/Error";
 import { isAuthenticated } from "../auth/helper";
 import { createProduct, getAllCategories } from "./helper/adminapicall";
 
@@ -30,11 +30,8 @@ const AddProduct = () => {
     stock,
     photo,
     categories,
-    category,
-    loading,
     error,
     createdProduct,
-    getRedirect,
     formData,
   } = values;
 
@@ -90,13 +87,32 @@ const AddProduct = () => {
 
   const successMsg = () => {
     if (createdProduct) {
-      return <Error msg="Created new product successfully!" error={false} />;
+      const msg = "Created new product successfully!";
+      toast.success(msg, {
+        position: "top-center",
+        toastId: "v",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   const errorMsg = () => {
     if (error) {
-      return <Error msg="Failed to create new product" />;
+      toast.error(error, {
+        position: "top-center",
+        toastId: "*",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     }
   };
 

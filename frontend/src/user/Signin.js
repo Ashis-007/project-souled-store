@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Base from "../core/Base";
 import { signin, authenticate, isAuthenticated } from "../auth/helper";
-import Error from "../core/Error";
 
 import "../css/Signin.css";
 
@@ -58,7 +58,18 @@ const Signin = () => {
   };
 
   const errorMsg = () => {
-    return <Error msg={error} />;
+    if (error) {
+      toast.error(error, {
+        position: "top-center",
+        toastId: "*",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
   };
 
   const signInForm = () => {

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import Base from "../core/Base";
 import { signup } from "../auth/helper";
-import Error from "../core/Error";
 
 import "../css/Signup.css";
 
@@ -45,14 +45,34 @@ const Signup = () => {
   };
 
   const successMsg = () => {
-    const msg = "Your account was created successfully!";
-    return (
-      <Error msg={msg} error={false} link="/signin" linkMsg="Login Here" />
-    );
+    if (success) {
+      const msg = "Your account was created successfully!";
+      toast.success(msg, {
+        position: "top-center",
+        toastId: "v",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   const errorMsg = () => {
-    return <Error msg={error} error={true} />;
+    if (error) {
+      toast.error(error, {
+        position: "top-center",
+        toastId: "*",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
   };
 
   const signUpForm = () => {

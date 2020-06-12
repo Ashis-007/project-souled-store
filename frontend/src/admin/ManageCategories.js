@@ -5,7 +5,6 @@ import Base from "../core/Base";
 import { isAuthenticated } from "../auth/helper";
 import {
   getAllCategories,
-  getCategory,
   deleteCategory,
 } from "./helper/adminapicall";
 
