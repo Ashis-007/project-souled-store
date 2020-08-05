@@ -2,9 +2,28 @@
   margin: auto;
 }
 
-h2.amount {
-  font-size: 2rem;
-  margin: 1rem 2rem;
+.Cart__products {
+  display: -ms-grid;
+  display: grid;
+  gap: 2rem;
+  -ms-grid-columns: (minmax(350px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.Cart__heading {
+  font-size: 2.3rem;
+  width: 40%;
+  margin: 2rem;
+}
+
+.payment h3 {
+  font-size: 2.5rem;
+  margin: 2rem;
+}
+
+.payment .amount {
+  font-size: 2.5rem;
+  margin: 2rem;
 }
 
 .purchase {
@@ -15,5 +34,14 @@ h2.amount {
   margin: 1.5rem 4.4em;
   font-weight: 400;
   font-size: 1.9rem;
+}
+
+@media (min-width: 900px) {
+  .Cart__heading {
+    font-size: 3.5rem;
+  }
+  .Cart .card {
+    width: 30%;
+  }
 }
 /*# sourceMappingURL=Cart.css.map */

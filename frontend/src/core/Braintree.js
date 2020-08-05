@@ -28,11 +28,12 @@ const Braintree = ({ products, setReload = (f) => f, reload }) => {
   const getMeToken = (userId, token) => {
     //   fire request to backend
     getToken(userId, token)
-      .then((info) => {
-        if (info.error) {
-          setInfo({ ...info, error: info.error });
+      .then((response) => {
+        if (response?.error) {
+          setInfo({ ...response, error: response.error });
+          console.log(response);
         } else {
-          const clientToken = info.clientToken;
+          const clientToken = response?.clientToken;
           setInfo({ clientToken });
         }
       })
@@ -102,7 +103,7 @@ const Braintree = ({ products, setReload = (f) => f, reload }) => {
   };
 
   return (
-    <div>
+    <div className="payment">
       <h2 className="amount">Total amount: &#x20B9; {getTotalAmount()}</h2>
       {showDropIn()}
     </div>

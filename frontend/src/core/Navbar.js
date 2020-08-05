@@ -33,7 +33,9 @@ const Navbar = ({ history }) => {
     <div className="nav">
       <div className="nav__brand">
         <div className="nav__brand-logo"></div>
-        <h2 className="nav__brand-name">Souled Store</h2>
+        <Link to="/" className="nav__brand-name">
+          Souled Store
+        </Link>
       </div>
       <div className="nav__burger hide-desktop" onClick={navbarAnimation}>
         <div className="line"></div>
@@ -110,7 +112,7 @@ const Navbar = ({ history }) => {
                 className="nav__nav-link"
                 to="/cart"
               >
-                <i class="fas fa-shopping-cart hide-mobile show-desktop">
+                <i className="fas fa-shopping-cart hide-mobile show-desktop">
                   <p>Cart</p>
                 </i>
               </Link>

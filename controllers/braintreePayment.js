@@ -13,7 +13,7 @@ exports.getToken = (req, res) => {
       res.status(500).send(err);
     } else {
       // res.send(response);
-      res.json(response);
+      return res.json(response);
     }
   });
 };

@@ -17,7 +17,8 @@
 }
 
 .admin__info .heading {
-  margin: 0;
+  font-size: 3rem;
+  margin: 2rem;
   margin-bottom: 1.5rem;
 }
 
@@ -37,8 +38,9 @@
 }
 
 .admin__panel .heading {
-  margin: 0;
+  margin: 2rem;
   margin-bottom: 1.5rem;
+  font-size: 3rem;
 }
 
 .admin__panel__items {

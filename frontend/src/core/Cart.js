@@ -7,6 +7,8 @@ import { loadCart } from "./helper/cartHelper";
 import StripeCheckout from "./StripeCheckout";
 import Braintree from "./Braintree";
 
+import "../css/Cart.css";
+
 const Cart = () => {
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
@@ -18,7 +20,7 @@ const Cart = () => {
   const loadAllProducts = (products) => {
     return (
       <div>
-        <h2 className="heading">Items in cart</h2>
+        <h2 className="Cart__heading">Items in cart</h2>
         {products.map((product, index) => {
           return (
             <Card
@@ -37,13 +39,13 @@ const Cart = () => {
 
   return (
     <Base title="" description="">
-      <div className="">
-        <div className="">
+      <div className="Cart">
+        <div className="Cart__products">
           {products ? loadAllProducts(products) : <h3>No products in cart!</h3>}
         </div>
-        <div className="">
+        <div className="Cart__payment">
           {/* <StripeCheckout products={products} setReload={setReload} /> */}
-          <Braintree products={products} setReload={setReload} />
+          {products && <Braintree products={products} setReload={setReload} />}
         </div>
       </div>
     </Base>
