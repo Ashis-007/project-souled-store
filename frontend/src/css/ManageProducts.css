@@ -1,0 +1,35 @@
+.ManageProducts__heading {
+  font-size: 3rem;
+  margin: 1rem 4rem;
+}
+
+.ManageProducts__subheading {
+  font-size: 2.3rem;
+  font-weight: 500;
+  margin: 1rem 4rem;
+}
+
+@media (min-width: 900px) {
+  .ManageProducts {
+    width: 90%;
+    margin: auto;
+  }
+  .ManageProducts__products {
+    display: -ms-grid;
+    display: grid;
+    gap: 2rem;
+    -ms-grid-columns: (minmax(350px, 1fr))[auto-fit];
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  .ManageProducts__heading, .ManageProducts__subheading {
+    width: 85%;
+    margin: 2rem auto;
+  }
+  .ManageProducts__heading {
+    font-size: 3.5rem;
+  }
+  .ManageProducts__subheading {
+    font-size: 2.7rem;
+  }
+}
+/*# sourceMappingURL=ManageProducts.css.map */

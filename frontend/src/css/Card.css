@@ -30,6 +30,23 @@
   font-weight: 600;
 }
 
+.card__update {
+  color: white;
+  background: #f1931b;
+  padding: 1rem 1.5rem;
+  font-size: 1.6rem;
+  border-radius: 1.2rem;
+  margin-right: 1rem;
+}
+
+.card__delete {
+  color: white;
+  background: #e71c23;
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 1.2rem;
+}
+
 .card__btn {
   padding: 1rem 2rem;
   border-radius: 2em;
@@ -77,13 +94,16 @@
   .card__info {
     padding: 1em 0.5em;
   }
+  .card__info__title {
+    font-size: 2.1rem;
+  }
   .card__info__desc {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: rgba(0, 0, 0, 0.7);
     margin-bottom: 1.5rem;
   }
   .card__info__price {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
   }
 }
 /*# sourceMappingURL=Card.css.map */

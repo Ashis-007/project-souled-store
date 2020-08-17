@@ -2,3 +2,4 @@
 node_modules
 frontend/.vscode
 frontend/src/temp.txt
+*.map

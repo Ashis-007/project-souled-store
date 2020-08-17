@@ -14,7 +14,7 @@ const AdminDashBoard = () => {
     return (
       <div className="admin__panel">
         <h4 className="heading">Admin Panel</h4>
-        <div class="">
+        <div className="">
           <ul className="admin__panel__items">
             <li className="admin__panel__item">
               <Link to="/admin/create/category" className="">

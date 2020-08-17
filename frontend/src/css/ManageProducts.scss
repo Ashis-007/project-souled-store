@@ -1,0 +1,39 @@
+.ManageProducts {
+  &__heading {
+    font-size: 3rem;
+    margin: 1rem 4rem;
+  }
+
+  &__subheading {
+    font-size: 2.3rem;
+    font-weight: 500;
+    margin: 1rem 4rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .ManageProducts {
+    width: 90%;
+    margin: auto;
+
+    &__products {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    &__heading,
+    &__subheading {
+      width: 85%;
+      margin: 2rem auto;
+    }
+
+    &__heading {
+      font-size: 3.5rem;
+    }
+
+    &__subheading {
+      font-size: 2.7rem;
+    }
+  }
+}

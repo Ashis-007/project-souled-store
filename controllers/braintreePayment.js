@@ -1,10 +1,10 @@
 const braintree = require("braintree");
 
-var gateway = braintree.connect({
+const gateway = braintree.connect({
   environment: braintree.Environment.Sandbox,
   merchantId: "pfvgcvq47yqd56s2",
-  publicKey: "ww96mk467kq8nbs4",
-  privateKey: "607177d796e5c98de99a5a69d57a0bc2",
+  publicKey: "nqbqwy2ktx9r2rrr",
+  privateKey: "e42fb2da1299680c2d6ab33e25efb1b5",
 });
 
 exports.getToken = (req, res) => {
@@ -12,8 +12,8 @@ exports.getToken = (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      // res.send(response);
-      return res.json(response);
+      res.send(response);
+      // return res.json(response);
     }
   });
 };
