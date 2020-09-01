@@ -9,11 +9,12 @@ const Card = ({
   product,
   addToCart = true,
   removeFromCart = false,
+  showCounter = false,
   setReload = (f) => f,
   reload,
 }) => {
   const [redirect, setRedirect] = useState(false);
-  const [count, setCount] = useState(product.count); //TODO: Add count feature in cart section
+  const [count, setCount] = useState(1); //TODO: Add count feature in cart section
 
   const getRedirect = () => {
     if (redirect) {
@@ -25,6 +26,17 @@ const Card = ({
     addItemToCart(product, () => {
       setRedirect(true);
     });
+  };
+
+  const addItem = () => {
+    // TODO: check for max stock
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  const removeItem = () => {
+    if (count > 1) {
+      setCount((prevCount) => prevCount - 1);
+    }
   };
 
   const showAddToCart = () => {
@@ -53,6 +65,23 @@ const Card = ({
     );
   };
 
+  const showCounterInCart = () => {
+    return (
+      <div className="card__counter">
+        <button className="btn card__counter__btn btn__add" onClick={addItem}>
+          <i class="fas fa-plus-circle"></i>
+        </button>
+        <p>{count}</p>
+        <button
+          className="btn card__counter__btn btn__remove"
+          onClick={removeItem}
+        >
+          <i class="fas fa-minus-circle"></i>
+        </button>
+      </div>
+    );
+  };
+
   return (
     <div className="">
       <div className="card">
@@ -65,6 +94,7 @@ const Card = ({
             {showAddToCart()}
             {getRedirect(redirect)}
             {showRemoveFromCart()}
+            {showCounter && showCounterInCart()}
           </div>
         </div>
       </div>

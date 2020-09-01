@@ -177,5 +177,8 @@
     -webkit-transform: scaleX(1);
             transform: scaleX(1);
   }
+  .nav__signout {
+    font-size: 2.7rem;
+  }
 }
 /*# sourceMappingURL=Navbar.css.map */

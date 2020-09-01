@@ -28,6 +28,7 @@ const Cart = () => {
               product={product}
               addToCart={false}
               removeFromCart={true}
+              showCounter={true}
               reload={reload}
               setReload={setReload}
             />

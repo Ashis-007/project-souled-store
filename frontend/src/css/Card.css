@@ -82,6 +82,25 @@
   color: white;
 }
 
+.card__counter {
+  width: 45%;
+  margin: 2rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2rem;
+}
+
+.card__counter button {
+  font-size: 2rem;
+}
+
 @media (min-width: 900px) {
   .card {
     width: 55%;
@@ -104,6 +123,9 @@
   }
   .card__info__price {
     font-size: 2.5rem;
+  }
+  .card__counter {
+    width: 20%;
   }
 }
 /*# sourceMappingURL=Card.css.map */
