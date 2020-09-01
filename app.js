@@ -17,7 +17,7 @@ const authRoutes = require("./routes/auth"),
   stripeRoutes = require("./routes/stripePayment");
 const braintreeRoutes = require("./routes/braintreePayment");
 
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/tshirt";
+const MONGO_URI = process.env.DATABASE || "mongodb://localhost:27017/tshirt";
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
