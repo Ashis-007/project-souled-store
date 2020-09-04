@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+// components
 import Base from "../core/Base";
+
+// helper
 import { isAuthenticated } from "../auth/helper";
 
 import "../css/AdminDashboard.css";
 
 const AdminDashBoard = () => {
   const {
-    user: { name, email, role },
+    user: { name, email },
   } = isAuthenticated();
 
   const adminPanel = () => {

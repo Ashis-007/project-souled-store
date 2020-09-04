@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
+// components
 import Base from "../core/Base";
+
+// helper
 import { signup } from "../auth/helper";
 
 import "../css/Signup.css";
@@ -46,7 +49,7 @@ const Signup = () => {
 
   const successMsg = () => {
     if (success) {
-      const msg = "Your account was created successfully!";
+      const msg = "Your account was created successfully!\nPlease log in";
       toast.success(msg, {
         position: "top-center",
         toastId: "v",
@@ -71,7 +74,7 @@ const Signup = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      })
+      });
     }
   };
 

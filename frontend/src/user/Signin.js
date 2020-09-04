@@ -2,12 +2,20 @@ import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 
+// components
 import Base from "../core/Base";
+
+// helper
 import { signin, authenticate, isAuthenticated } from "../auth/helper";
+import { loadCart } from "../core/helper/cartHelper";
+
+// redux
+import { connect } from "react-redux";
+import { signInUser } from "../actions";
 
 import "../css/Signin.css";
 
-const Signin = () => {
+const Signin = ({ user, signInUser }) => {
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -18,15 +26,15 @@ const Signin = () => {
 
   const { email, password, error, loading, didRedirect } = values;
 
-  const { user } = isAuthenticated();
-
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
+
     setValues({ ...values, error: false, loading: true });
+
     signin({ email, password })
       .then((data) => {
         if (data.error) {
@@ -40,19 +48,24 @@ const Signin = () => {
           });
         }
       })
+      .then(() => {
+        const { user: userInfo } = isAuthenticated();
+        const cart = loadCart(userInfo._id);
+        signInUser({ ...userInfo, cart });
+      })
       .catch(console.log("Sign in request failed!"));
   };
 
   const performRedirect = () => {
     if (didRedirect) {
-      if (user && user.role === 1) {
+      if (user.role === 1) {
         return <Redirect to="/admin/dashboard" />;
       } else {
         return <Redirect to="/user/dashboard" />;
       }
     }
 
-    if (isAuthenticated()) {
+    if (user) {
       return <Redirect to="/" />;
     }
   };
@@ -68,7 +81,7 @@ const Signin = () => {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-      })
+      });
     }
   };
 
@@ -118,12 +131,19 @@ const Signin = () => {
     <Base title="" description="">
       <h2 className="form__heading">Sign In</h2>
 
-      {/* {loadingMsg()} */}
       {errorMsg()}
       {signInForm()}
-      {performRedirect()}
+      {user && performRedirect()}
     </Base>
   );
 };
 
-export default Signin;
+const mapStateToProps = (state) => ({
+  user: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signInUser: (user) => dispatch(signInUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signin);

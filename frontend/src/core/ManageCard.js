@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+// helper
 import ImageHelper from "./helper/ImageHelper";
 
 const ManageCard = ({ product, deleteThisProduct }) => {

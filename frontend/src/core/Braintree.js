@@ -2,14 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import DropIn from "braintree-web-drop-in-react";
 
-import { loadCart, cartEmpty } from "./helper/cartHelper";
+// helper
+import { cartEmpty } from "./helper/cartHelper";
 import { getToken, makePayment } from "./helper/paymentHelper";
 import { createOrder } from "./helper/orderHelper";
 import { isAuthenticated } from "../auth/helper";
 
+// redux
+import { connect } from "react-redux";
+
 import "../css/Cart.css";
 
-const Braintree = ({ products, setReload = (f) => f, reload }) => {
+const Braintree = ({ products, setReload = (f) => f, reload, user }) => {
   const [info, setInfo] = useState({
     loading: false,
     success: false,
@@ -18,7 +22,7 @@ const Braintree = ({ products, setReload = (f) => f, reload }) => {
     instance: {},
   });
 
-  const userId = isAuthenticated() && isAuthenticated().user._id;
+  const userId = user._id;
   const token = isAuthenticated() && isAuthenticated().token;
 
   const getTotalAmount = () => {
@@ -110,4 +114,10 @@ const Braintree = ({ products, setReload = (f) => f, reload }) => {
   );
 };
 
-export default Braintree;
+const mapStateToProps = (state) => ({
+  user: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Braintree);

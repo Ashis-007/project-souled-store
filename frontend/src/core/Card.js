@@ -1,7 +1,18 @@
 import React, { useState } from "react";
-import ImageHelper from "./helper/ImageHelper";
 import { Redirect } from "react-router-dom";
+
+// helper
+import ImageHelper from "./helper/ImageHelper";
 import { addItemToCart, removeItemFromCart } from "./helper/cartHelper";
+
+// redux
+import { connect } from "react-redux";
+import {
+  addProduct,
+  removeProduct,
+  increProduct,
+  decreProduct,
+} from "../actions";
 
 import "../css/Card.css";
 
@@ -12,6 +23,11 @@ const Card = ({
   showCounter = false,
   setReload = (f) => f,
   reload,
+  user,
+  addProduct,
+  removeProduct,
+  increProduct,
+  decreProduct,
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(1); //TODO: Add count feature in cart section
@@ -23,19 +39,22 @@ const Card = ({
   };
 
   const AddToCart = () => {
-    addItemToCart(product, () => {
+    addItemToCart(product, user._id, () => {
       setRedirect(true);
+      addProduct(product);
     });
   };
 
   const addItem = () => {
     // TODO: check for max stock
     setCount((prevCount) => prevCount + 1);
+    increProduct(product._id);
   };
 
   const removeItem = () => {
     if (count > 1) {
       setCount((prevCount) => prevCount - 1);
+      decreProduct(product._id);
     }
   };
 
@@ -54,7 +73,8 @@ const Card = ({
       removeFromCart && (
         <button
           onClick={() => {
-            removeItemFromCart(product._id);
+            removeItemFromCart(product._id, user._id);
+            removeProduct(product._id);
             setReload(!reload);
           }}
           className="btn card__btn card__btn__remove"
@@ -69,14 +89,14 @@ const Card = ({
     return (
       <div className="card__counter">
         <button className="btn card__counter__btn btn__add" onClick={addItem}>
-          <i class="fas fa-plus-circle"></i>
+          <i className="fas fa-plus-circle"></i>
         </button>
         <p>{count}</p>
         <button
           className="btn card__counter__btn btn__remove"
           onClick={removeItem}
         >
-          <i class="fas fa-minus-circle"></i>
+          <i className="fas fa-minus-circle"></i>
         </button>
       </div>
     );
@@ -102,4 +122,15 @@ const Card = ({
   );
 };
 
-export default Card;
+const mapStateToProps = (state) => ({
+  user: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addProduct: (product) => dispatch(addProduct(product)),
+  removeProduct: (id) => dispatch(removeProduct(id)),
+  increProduct: (id) => dispatch(increProduct(id)),
+  decreProduct: (id) => dispatch(decreProduct(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

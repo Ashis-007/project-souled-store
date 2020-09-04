@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
+
 import "../styles.css";
+
+// components
 import Base from "./Base";
 import Card from "./Card";
+
+// helper
 import { getAllProducts } from "./helper/coreapicalls";
 
 import "../css/Home.css";
@@ -14,7 +19,7 @@ const Home = () => {
     getAllProducts().then((data) => {
       if (data.error) {
         setError(data.error);
-        console.log(error)
+        console.log(error);
       } else {
         setProducts(data);
       }

@@ -1,5 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// redux
+import { connect } from "react-redux";
+import { signInUser } from "./actions";
+
+import { isAuthenticated } from "./auth/helper";
+import { loadCart } from "./core/helper/cartHelper";
 
 import Home from "./core/Home";
 import Signup from "./user/Signup";
@@ -20,7 +27,17 @@ import UpdateProduct from "./admin/UpdateProduct";
 
 import Cart from "./core/Cart";
 
-function Routes() {
+const Routes = ({ user, signInUser }) => {
+  useEffect(() => {
+    const { user: userInfo } = isAuthenticated();
+    const cart = loadCart(userInfo?._id);
+
+    if (userInfo) {
+      user = { ...userInfo, cart };
+      signInUser(user);
+    }
+  }, []);
+
   return (
     <Router>
       <Switch>
@@ -61,6 +78,14 @@ function Routes() {
       </Switch>
     </Router>
   );
-}
+};
 
-export default Routes;
+const mapStateToProps = (state) => ({
+  user: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signInUser: (user) => dispatch(signInUser(user)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Routes);

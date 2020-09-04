@@ -1,0 +1,8 @@
+export const SIGNIN_USER = "SIGNIN_USER";
+export const SIGNOUT_USER = "SIGNOUT_USER";
+
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+
+export const INCRE_PRODUCT = "INCRE_PRODUCT";
+export const DECRE_PRODUCT = "DECRE_PRODUCT";

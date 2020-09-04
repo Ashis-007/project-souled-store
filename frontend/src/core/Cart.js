@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
-import "../styles.css";
+
+// components
 import Base from "./Base";
 import Card from "./Card";
-import {} from "./helper/coreapicalls";
-import { loadCart } from "./helper/cartHelper";
 import StripeCheckout from "./StripeCheckout";
 import Braintree from "./Braintree";
 
+// helper
+import { loadCart } from "./helper/cartHelper";
+
+// redux
+import { connect } from "react-redux";
+
 import "../css/Cart.css";
 
-const Cart = () => {
+const Cart = ({ user }) => {
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
 
   useEffect(() => {
-    setProducts(loadCart());
+    setProducts(loadCart(user?._id));
   }, [reload]);
 
   const loadAllProducts = (products) => {
@@ -53,4 +58,10 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+const mapStateToProps = (state) => ({
+  user: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -1,7 +1,12 @@
 import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 
-import { signout, isAuthenticated } from "../auth/helper";
+// helper
+import { signout } from "../auth/helper";
+
+// redux
+import { connect } from "react-redux";
+import { signOutUser } from "../actions";
 
 import "../css/Navbar.css";
 
@@ -13,7 +18,7 @@ const currentTab = (history, path) => {
   }
 };
 
-const Navbar = ({ history }) => {
+const Navbar = ({ history, user, signOutUser }) => {
   const navbarAnimation = () => {
     const burger = document.querySelector(".nav__burger");
     const close = document.querySelector(".nav__close");
@@ -57,7 +62,7 @@ const Navbar = ({ history }) => {
           </Link>
         </li>
 
-        {isAuthenticated() && isAuthenticated.role === 0 && (
+        {user && user.role === 0 && (
           <li className="nav__nav-item">
             <Link
               style={currentTab(history, "/user/dashboard")}
@@ -69,7 +74,7 @@ const Navbar = ({ history }) => {
           </li>
         )}
 
-        {isAuthenticated() && isAuthenticated().user.role === 1 && (
+        {user && user.role === 1 && (
           <li className="nav__nav-item">
             <Link
               style={currentTab(history, "/admin/dashboard")}
@@ -81,7 +86,7 @@ const Navbar = ({ history }) => {
           </li>
         )}
 
-        {!isAuthenticated() && (
+        {!user && (
           <Fragment>
             <li className="nav__nav-item">
               <Link
@@ -104,7 +109,7 @@ const Navbar = ({ history }) => {
           </Fragment>
         )}
 
-        {isAuthenticated() && (
+        {user && (
           <Fragment>
             <li className="nav__nav-item">
               <Link
@@ -121,6 +126,7 @@ const Navbar = ({ history }) => {
               <button
                 className="nav__signout"
                 onClick={() => {
+                  signOutUser();
                   signout(() => {
                     history.push("/");
                   });
@@ -136,4 +142,12 @@ const Navbar = ({ history }) => {
   );
 };
 
-export default withRouter(Navbar);
+const mapStateToProps = (state) => ({
+  user: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signOutUser: () => dispatch(signOutUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Navbar));
