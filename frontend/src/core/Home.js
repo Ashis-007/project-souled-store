@@ -15,23 +15,28 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(false);
 
-  const loadAllProducts = () => {
-    getAllProducts().then((data) => {
-      if (data.error) {
-        setError(data.error);
-        console.log(error);
-      } else {
-        setProducts(data);
-      }
-    });
-  };
-
   useEffect(() => {
+    const loadAllProducts = () => {
+      getAllProducts().then((data) => {
+        if (data.error) {
+          setError(data.error);
+          console.log(error);
+        } else {
+          for (let i = data.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * i);
+            const temp = data[i];
+            data[i] = data[j];
+            data[j] = temp;
+          }
+          setProducts(data);
+        }
+      });
+    };
     loadAllProducts();
   }, []);
 
   return (
-    <Base title="" description="">
+    <Base>
       <div className="gradient">
         <p>Welcome to the Souled Store.</p>
       </div>

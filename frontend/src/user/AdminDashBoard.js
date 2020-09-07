@@ -78,7 +78,7 @@ const AdminDashBoard = () => {
   };
 
   return (
-    <Base title="" className="">
+    <Base short={true}>
       <div className="admin-dashboard">
         <div className=""> {adminInfo()}</div>
         <div className=""> {adminPanel()}</div>

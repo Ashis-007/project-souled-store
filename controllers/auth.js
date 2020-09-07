@@ -14,7 +14,7 @@ exports.signup = (req, res) => {
   const user = new User(req.body);
   user.save((err, newUser) => {
     if (err || !newUser) {
-      res.status(400).json({
+      return res.status(400).json({
         error: err,
       });
     }

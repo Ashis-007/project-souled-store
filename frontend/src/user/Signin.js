@@ -128,7 +128,7 @@ const Signin = ({ user, signInUser }) => {
   };
 
   return (
-    <Base title="" description="">
+    <Base short={true}>
       <h2 className="form__heading">Sign In</h2>
 
       {errorMsg()}

@@ -134,7 +134,7 @@ exports.getAllProducts = (req, res) => {
     .populate("category")
     .select("-photo")
     .sort([[sortBy, "asc"]])
-    .limit(limit)
+    // .limit(limit)
     .exec((err, products) => {
       if (err) {
         return res.status(400).json({

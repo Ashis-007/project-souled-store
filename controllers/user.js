@@ -48,6 +48,16 @@ exports.updateUser = (req, res) => {
   );
 };
 
+exports.deleteUser = (req, res) => {
+  User.findByIdAndRemove(req.profile._id, (err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "Could not delete user",
+      });
+    }
+  });
+};
+
 exports.userPurchaseList = (req, res) => {
   Order.find({ user: req.profile._id })
     .populate("user", "_id name")

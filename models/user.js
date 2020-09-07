@@ -23,10 +23,28 @@ const userSchema = new mongoose.Schema(
       unique: true,
     },
 
-    mobile: {
-      type: Number,
-      // required: true,
+    contactNumber: {
+      type: String,
       unique: true,
+      maxlength: 10,
+    },
+
+    address: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    city: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    state: {
+      type: String,
+      required: true,
+      trim: true,
     },
 
     userInfo: {

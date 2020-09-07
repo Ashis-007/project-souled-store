@@ -69,7 +69,7 @@ const Navbar = ({ history, user, signOutUser }) => {
               className="nav__nav-link"
               to="/user/dashboard"
             >
-              Dashboard
+              Profile
             </Link>
           </li>
         )}

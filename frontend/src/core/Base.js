@@ -2,15 +2,14 @@ import React from "react";
 import Navbar from "./Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./Footer";
 
-const Base = ({ title = "", description = "", className = "", children }) => {
+const Base = ({ short = false, children }) => {
   return (
     <div>
       <Navbar />
       <div className="">
         <div className="">
-          <h2 className="">{title}</h2>
-          <p className="">{description}</p>
           <ToastContainer
             position="top-center"
             autoClose={5000}
@@ -24,11 +23,9 @@ const Base = ({ title = "", description = "", className = "", children }) => {
             style={{ fontSize: "1.7rem", padding: "0.5em" }}
           />
         </div>
-        <div className={className}>{children}</div>
+        <div>{children}</div>
       </div>
-      <div className="footer">
-        <p>All Rights Reserved</p>
-      </div>
+      <Footer short={short} />
     </div>
   );
 };
