@@ -46,12 +46,12 @@ app.use(express.static("frontend/build"));
 
 if (process.env.NODE_ENV === "production") {
   // serve static file
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname + "frontend/build/index.html"));
   });
 }
 
-const port = process.env.PORT || 5050;
-app.listen(port, () => {
-  console.log("Server started at port", port);
+const PORT = process.env.PORT || 5050;
+app.listen(PORT, () => {
+  console.log("Server started at port", PORT);
 });
