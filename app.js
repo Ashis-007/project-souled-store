@@ -27,9 +27,10 @@ mongoose
   })
   .then(() => {
     console.log(chalk.green("==== DB CONNECTED ===="));
-  }).catch((err) => {
-    console.log(chalk.red("Could not connect DB"))
-    console.log(err)
+  })
+  .catch((err) => {
+    console.log(chalk.red("Could not connect DB"));
+    console.log(err);
   });
 
 // Middlewares
