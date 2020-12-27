@@ -1,46 +1,44 @@
 const { Order, ProductCart } = require("../models/order");
 
-exports.getOrderById = (req, res, next, id) => {
-  Order.findById(id)
-    .populate("products.product", "name price")
-    .exec((err, order) => {
-      if (err) {
-        return res.status(400).json({
-          error: "Order not found",
-        });
-      }
-
-      req.order = order;
-      next();
+exports.getOrderById = async (req, res, next, id) => {
+  try {
+    const order = await Order.findById(id)
+      .populate("products.product", "name price")
+      .exec();
+    req.order = order;
+    next();
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({
+      error: "Order not found",
     });
+  }
 };
 
-exports.createOrder = (req, res) => {
-  req.body.order.user = req.profile;
-  const order = new Order(req.body.order);
-  order.save((err, order) => {
-    if (err) {
-      return res.status(400).json({
-        error: "Failed to save your order in DB",
-      });
-    }
-
+exports.createOrder = async (req, res) => {
+  try {
+    const order = new Order(req.body.order);
+    req.body.order.user = req.profile;
+    await order.save();
     res.json(order);
-  });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({
+      error: "Failed to save your order in DB",
+    });
+  }
 };
 
-exports.getAllOrders = (req, res) => {
-  Order.find()
-    .populate("user", "_id name")
-    .exec((err, orders) => {
-      if (err) {
-        return res.status(400).json({
-          error: "No orders found",
-        });
-      }
-
-      res.json(orders);
+exports.getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find().populate("user", "_id name").exec();
+    res.json(orders);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({
+      error: "No orders found",
     });
+  }
 };
 
 exports.getOrderStatus = (req, res) => {
