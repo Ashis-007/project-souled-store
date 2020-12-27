@@ -3,19 +3,17 @@ const formidable = require("formidable");
 const _ = require("lodash");
 const fs = require("fs");
 
-exports.getProductById = (req, res, next, id) => {
-  Product.findById(id)
-    .populate("category")
-    .exec((err, product) => {
-      if (err || !product) {
-        return res.status(400).json({
-          error: "Product not found",
-        });
-      }
-
-      req.product = product;
-      next();
+exports.getProductById = async (req, res, next, id) => {
+  try {
+    const product = await Product.findById(id).populate("category").exec();
+    req.product = product;
+    next();
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({
+      error: "Product not found",
     });
+  }
 };
 
 exports.createProduct = (req, res) => {
@@ -126,24 +124,24 @@ exports.removeProduct = (req, res) => {
   });
 };
 
-exports.getAllProducts = (req, res) => {
-  let limit = req.query.limit ? parseInt(req.query.limit) : 8;
-  let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
+exports.getAllProducts = async (req, res) => {
+  try {
+    let limit = req.query.limit ? parseInt(req.query.limit) : 8;
+    let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
 
-  Product.find()
-    .populate("category")
-    .select("-photo")
-    .sort([[sortBy, "asc"]])
-    // .limit(limit)
-    .exec((err, products) => {
-      if (err) {
-        return res.status(400).json({
-          error: "No products found",
-        });
-      }
-
-      res.json(products);
+    const products = await Product.find()
+      .populate("category")
+      .select("-photo")
+      .sort([[sortBy, "asc"]])
+      // .limit(limit)
+      .exec();
+    res.json(products);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({
+      error: "No products found",
     });
+  }
 };
 
 exports.getAllCategories = (req, res) => {
