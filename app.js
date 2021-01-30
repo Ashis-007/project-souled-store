@@ -6,9 +6,10 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   cookieParser = require("cookie-parser"),
   cors = require("cors"),
-  path = require("path");
+  path = require("path"),
+  chalk = require("chalk");
 
-// My Routes
+// Routes
 const authRoutes = require("./routes/auth"),
   userRoutes = require("./routes/user"),
   categoryRoutes = require("./routes/category"),
@@ -17,7 +18,7 @@ const authRoutes = require("./routes/auth"),
   stripeRoutes = require("./routes/stripePayment");
 const braintreeRoutes = require("./routes/braintreePayment");
 
-const MONGO_URI = process.env.DATABASE || "mongodb://localhost:27017/tshirt";
+const MONGO_URI = process.env.DATABASE;
 mongoose
   .connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -25,7 +26,11 @@ mongoose
     useCreateIndex: true,
   })
   .then(() => {
-    console.log("==== DB CONNECTED ====");
+    console.log(chalk.green("==== DB CONNECTED ===="));
+  })
+  .catch((err) => {
+    console.log(chalk.red("Could not connect DB"));
+    console.log(err);
   });
 
 // Middlewares
@@ -46,12 +51,12 @@ app.use(express.static("frontend/build"));
 
 if (process.env.NODE_ENV === "production") {
   // serve static file
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname + "frontend/build/index.html"));
   });
 }
 
-const port = process.env.PORT || 5050;
-app.listen(port, () => {
-  console.log("Server started at port", port);
+const PORT = process.env.PORT || 5050;
+app.listen(PORT, () => {
+  console.log(chalk.green("[SERVER] initialised at PORT", PORT));
 });

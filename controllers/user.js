@@ -1,17 +1,17 @@
 const User = require("../models/user");
 const Order = require("../models/order");
 
-exports.getUserbyId = (req, res, next, id) => {
-  User.findById(id).exec((err, user) => {
-    if (err || !user) {
-      return res.status(400).json({
-        error: "Could not find user in DB",
-      });
-    }
-
+exports.getUserbyId = async (req, res, next, id) => {
+  try {
+    const user = await User.findById(id).exec();
     req.profile = user;
     next();
-  });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({
+      error: "Could not find user in DB",
+    });
+  }
 };
 
 exports.getUser = (req, res) => {
@@ -58,18 +58,18 @@ exports.deleteUser = (req, res) => {
   });
 };
 
-exports.userPurchaseList = (req, res) => {
-  Order.find({ user: req.profile._id })
-    .populate("user", "_id name")
-    .exec((err, order) => {
-      if (err || !order) {
-        return res.status(400).json({
-          error: "No order in this account",
-        });
-      }
-
-      res.json(order);
+exports.userPurchaseList = async (req, res) => {
+  try {
+    const order = await Order.find({ user: req.profile._id })
+      .populate("user", "_id name")
+      .exec();
+    res.json(order);
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json({
+      error: "No order in this account",
     });
+  }
 };
 
 exports.pushOrder = (req, res, next) => {
