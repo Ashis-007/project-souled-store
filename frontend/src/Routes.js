@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { signInUser } from "./actions";
 
+// helper
 import { isAuthenticated } from "./auth/helper";
 import { loadCart } from "./core/helper/cartHelper";
 
@@ -26,6 +27,8 @@ import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 
 import Cart from "./core/Cart";
+import EditUser from "./user/EditUser";
+import Checkout from "./user/Checkout";
 
 const Routes = ({ user, signInUser }) => {
   useEffect(() => {
@@ -46,6 +49,7 @@ const Routes = ({ user, signInUser }) => {
         <Route path="/signin" exact component={Signin} />
         <PrivateRoute path="/cart" exact component={Cart} />
         <PrivateRoute path="/user/dashboard" exact component={UserDashBoard} />
+        <PrivateRoute path="/user/edit" exact component={EditUser} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashBoard} />
 
         {/* CATEGORY */}
@@ -75,6 +79,7 @@ const Routes = ({ user, signInUser }) => {
         />
 
         {/* CART */}
+        <PrivateRoute path="/:userId/checkout" exact component={Checkout} />
       </Switch>
     </Router>
   );

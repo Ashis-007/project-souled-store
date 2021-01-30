@@ -1,0 +1,42 @@
+.UserDashboard {
+  padding: 5rem;
+}
+
+.UserDashboard__heading {
+  font-size: 3.5rem;
+}
+
+.UserDashboard__info-panel {
+  width: 30%;
+}
+
+.UserDashboard__info-panel__heading {
+  font-size: 2.7rem;
+}
+
+.UserDashboard__info-panel__section {
+  font-size: 1.7rem;
+}
+
+.UserDashboard__info-panel__edit {
+  border: 2px solid yellow;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  -webkit-transition: ease-in 0.3s;
+  transition: ease-in 0.3s;
+  font-size: 1.7rem;
+}
+
+.UserDashboard__info-panel__edit a {
+  color: yellow;
+}
+
+.UserDashboard__info-panel__edit:hover {
+  background: yellow;
+  color: white;
+}
+
+.UserDashboard__info-panel__edit:hover a {
+  color: white;
+}
+/*# sourceMappingURL=UserDashboard.css.map */

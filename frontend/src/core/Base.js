@@ -4,7 +4,10 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./Footer";
 
-const Base = ({ short = false, children }) => {
+// redux
+import { connect } from "react-redux";
+
+const Base = ({ short = false, children, user }) => {
   return (
     <div>
       <Navbar />
@@ -30,4 +33,10 @@ const Base = ({ short = false, children }) => {
   );
 };
 
-export default Base;
+const mapStateToProps = (state) => ({
+  user: state,
+});
+
+const mapDispatchToProps = (dispatch) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Base);

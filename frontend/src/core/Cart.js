@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 // components
 import Base from "./Base";
 import Card from "./Card";
-import StripeCheckout from "./StripeCheckout";
-import Braintree from "./Braintree";
+// import StripeCheckout from "./StripeCheckout";
+// import Braintree from "./Braintree";
 
 // helper
 import { loadCart } from "./helper/cartHelper";
@@ -51,7 +51,7 @@ const Cart = ({ user }) => {
         </div>
         <div className="Cart__payment">
           {/* <StripeCheckout products={products} setReload={setReload} /> */}
-          {products && <Braintree products={products} setReload={setReload} />}
+          {/* {products && <Braintree products={products} setReload={setReload} />} */}
         </div>
       </div>
     </Base>
